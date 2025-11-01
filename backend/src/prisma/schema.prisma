@@ -66,7 +66,7 @@ model Category {
 
 model Products {
   id String @id @default(uuid())
-  ref String
+  reference String
   name String
   description String @db.VarChar(600)
   price Decimal
@@ -91,11 +91,13 @@ model Orders {
   phone String
   delivery_address String
   delivery_mode deliveryMode? @default(aramex)
+  total Decimal
   order_date DateTime
-  status OrderStatus
+  status OrderStatus @default(pending)
   paiement_status PaiementStatus @default(unpaid)
 
   orderItems OrderItems[]
+  
   paiement Paiement?
 }
 
