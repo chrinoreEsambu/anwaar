@@ -13,15 +13,47 @@ enum ClientRole {
   admin
   client
 }
+
+enum ProductState {
+  hide
+  display
+}
+
+enum OrderStatus {
+  pending
+  confirmed
+  shipped
+  delivered
+  cancelled
+}
+
+enum PaiementStatus {
+  unpaid
+  pending
+  paid
+  failed
+  refunded
+  cancelled
+}
+
+enum deliveryMode {
+  pickup
+  aramex
+  first_delivery
+}
+
 model Users {
   id String @id @default(uuid())
   name String
+  first_name String
   email String @unique
   birthdate DateTime
   gender String
   role ClientRole @default(client)
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  orders Orders[]
 }
 
 model Category {
@@ -31,6 +63,7 @@ model Category {
 
   Products Products[]
 }
+
 model Products {
   id String @id @default(uuid())
   ref String
@@ -43,9 +76,47 @@ model Products {
 
   categoryId String?
   category Category? @relation(fields: [categoryId], references: [id])
+
+  OrderItems OrderItems[]
 }
- 
-enum ProductState {
-  hide
-  display
+
+model Orders {
+  id String @id @default(uuid())
+
+  user_id String?
+  userId Users? @relation(fields: [user_id], references: [id])
+
+  name String
+  first_name String
+  phone String
+  delivery_address String
+  delivery_mode deliveryMode? @default(aramex)
+  order_date DateTime
+  status OrderStatus
+  paiement_status PaiementStatus @default(unpaid)
+
+  orderItems OrderItems[]
+  paiement Paiement?
+}
+
+model OrderItems {
+  id String @id @default(uuid())
+
+  order_id String
+  orders Orders @relation(fields: [order_id], references: [id])
+
+  product_id String
+  products Products @relation(fields: [product_id], references: [id])
+
+  quantity Int
+  price Decimal
+}
+
+model Paiement {
+  id String @id @default(uuid())
+
+  order_id String @unique
+  order Orders @relation(fields: [order_id], references: [id])
+
+  status PaiementStatus @default(unpaid)
 }
