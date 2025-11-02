@@ -20,7 +20,7 @@ class UserService {
       parallelism: 2,
     });
 
-    const newUser = await userRepository.create({
+    const newUser = await userRepository.createUser({
       name: userData.name,
       first_name: userData.first_name,
       email: userData.email.toLowerCase(),
@@ -36,6 +36,14 @@ class UserService {
   isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
+  }
+
+  async getAll() {
+    const alluser = await userRepository.findAll();
+    if (!alluser) {
+      return "vide";
+    }
+    return alluser;
   }
 }
 

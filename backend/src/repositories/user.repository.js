@@ -1,7 +1,7 @@
 const prisma = require("../config/prismaClient");
 
 class UserRepository {
-  async create(userData) {
+  async createUser (userData) {
     return await prisma.users.create({
       data: userData,
     });
@@ -10,7 +10,7 @@ class UserRepository {
   async findAll() {
     return await prisma.users.findMany({
       orderBy: {
-        created_at: "desc",
+        createdAt: "desc",
       },
     });
   }
