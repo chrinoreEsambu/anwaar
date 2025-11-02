@@ -1,0 +1,29 @@
+openapi: 3.0.0
+info:
+  title: API Anwaar
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+
+paths:
+  /api/users:
+    post:
+      summary: Créer un utilisateur
+      tags: [Users]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              name: "String"
+              first_name: "String"
+              email: "String"
+              birthdate: "String (date)"
+              password: "String"
+              gender: "String"
+              role: "client ou admin (optionnel)"
+      responses:
+        "201":
+          description: Succès
+        "400":
+          description: Erreur

@@ -3,12 +3,13 @@ const userService = require("../services/user.service");
 class UserController {
   async createUser(req, res) {
     try {
-      const { name, first_name, email, birthdate, gender, role } = req.body;
+      const { name, first_name, email,password, birthdate, gender, role } = req.body;
 
-      if (!name || !first_name || !email || !birthdate || !gender) {
+      if (!name || !first_name || !email || !password || !birthdate || !gender) {
         return res.status(400).json({
           success: false,
-          message: "Tous les champs sont requis (name, first_name, email, birthdate, gender)",
+          message:
+            "Tous les champs sont requis (name, first_name, email,password, birthdate, gender)",
         });
       }
 
@@ -16,6 +17,7 @@ class UserController {
         name,
         first_name,
         email,
+        password,
         birthdate,
         gender,
         role,
