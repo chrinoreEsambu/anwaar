@@ -1,0 +1,124 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum ClientRole {
+  admin
+  client
+}
+
+enum ProductState {
+  hide
+  display
+}
+
+enum OrderStatus {
+  pending
+  confirmed
+  shipped
+  delivered
+  cancelled
+}
+
+enum PaiementStatus {
+  unpaid
+  pending
+  paid
+  failed
+  refunded
+  cancelled
+}
+
+enum deliveryMode {
+  pickup
+  aramex
+  first_delivery
+}
+
+model Users {
+  id         String     @id @default(uuid())
+  name       String
+  first_name String
+  email      String     @unique
+  birthdate  DateTime
+  gender     String
+  role       ClientRole @default(client)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  orders Orders[]
+}
+
+model Category {
+  id          String @id @default(uuid())
+  name        String
+  description String @db.VarChar(600)
+
+  Products Products[]
+}
+
+model Products {
+  id          String       @id @default(uuid())
+  reference   String
+  name        String
+  description String       @db.VarChar(600)
+  price       Decimal
+  picture_url String
+  state       ProductState @default(hide)
+  createdAt   DateTime     @default(now())
+
+  categoryId String?
+  category   Category? @relation(fields: [categoryId], references: [id])
+
+  OrderItems OrderItems[]
+}
+
+model Orders {
+  id String @id @default(uuid())
+
+  user_id String?
+  userId  Users?  @relation(fields: [user_id], references: [id])
+
+  name             String
+  first_name       String
+  phone            String
+  delivery_address String
+  delivery_mode    deliveryMode?  @default(aramex)
+  total            Decimal
+  order_date       DateTime
+  status           OrderStatus    @default(pending)
+  paiement_status  PaiementStatus @default(unpaid)
+
+  orderItems OrderItems[]
+
+  paiement Paiement?
+}
+
+model OrderItems {
+  id String @id @default(uuid())
+
+  order_id String
+  orders   Orders @relation(fields: [order_id], references: [id])
+
+  product_id String
+  products   Products @relation(fields: [product_id], references: [id])
+
+  quantity Int
+  price    Decimal
+}
+
+model Paiement {
+  id String @id @default(uuid())
+
+  order_id String @unique
+  order    Orders @relation(fields: [order_id], references: [id])
+
+  status PaiementStatus @default(unpaid)
+}
