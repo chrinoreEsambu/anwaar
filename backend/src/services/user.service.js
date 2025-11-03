@@ -1,5 +1,7 @@
 const userRepository = require("../repositories/user.repository");
+const jwt = require("jsonwebtoken");
 const argon2 = require("argon2");
+require("dotenv").config();
 
 class UserService {
   async createUser(userData) {
@@ -34,6 +36,38 @@ class UserService {
       return "No users found";
     }
     return alluser;
+  }
+
+  async login(email, password) {
+    const user = await userRepository.findByEmail(email);
+
+    if (!user) {
+      throw new Error("Email ou mot de passe incorrect");
+    }
+
+    const isPasswordValid = await argon2.verify(user.password, password);
+
+    if (!isPasswordValid) {
+      throw new Error("Email ou mot de passe incorrect");
+    }
+
+    const token = jwt.sign(
+      {
+        userId: user.id,
+        email: user.email,
+        role: user.role,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "24h" }
+    );
+
+    // 4. Retourner user sans password + token
+    const { password: _, ...userWithoutPassword } = user;
+
+    return {
+      user: userWithoutPassword,
+      token,
+    };
   }
 }
 

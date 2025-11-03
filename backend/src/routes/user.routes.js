@@ -9,5 +9,6 @@ router.post(
   userController.createUser.bind(userController)
 );
 router.get("/getUser", userController.alluser.bind(userController));
+router.post("/connexion", isValidEmail, userController.login);
 
 module.exports = router;

@@ -74,6 +74,34 @@ class UserController {
       });
     }
   }
+
+  async login(req, res) {
+    try {
+      const { email, password } = req.body;
+
+      const result = await userService.login(email, password);
+
+      return res.status(200).json({
+        success: true,
+        message: "Connexion réussie",
+        data: result,
+      });
+    } catch (error) {
+      console.error("Erreur login:", error);
+
+      if (error.message.includes("incorrect")) {
+        return res.status(401).json({
+          success: false,
+          message: error.message,
+        });
+      }
+      return res.status(500).json({
+        success: false,
+        message: "Erreur lors de la connexion",
+        error: error.message,
+      });
+    }
+  }
 }
 
 module.exports = new UserController();

@@ -1,6 +1,6 @@
 | Fonction                | Description                                     | Côté               |
 | ----------------------- | ----------------------------------------------- | ------------------ |
-| `register`              | Créer un compte (hash avec Argon2, validations) | Backend + Frontend |
+| `register`  ok             | Créer un compte (hash avec Argon2, validations) | Backend + Frontend |
 | `login`                 | Connexion avec JWT (ou cookie si tu veux)       | Backend + Frontend |
 | `logout`                | Déconnexion (invalider le token côté client)    | Frontend           |
 | `getProfile`            | Récupérer les infos de l’utilisateur connecté   | Backend            |
