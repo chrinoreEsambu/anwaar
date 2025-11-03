@@ -23,6 +23,14 @@ class UserRepository {
       where: { email },
     });
   }
+
+  async update(userid) {
+    return await prisma.users.update({ where: { id: userid } });
+  }
+
+  async deleteUser(userid) {
+    return await prisma.users.delete({ where: { id: userid } });
+  }
 }
 
 module.exports = new UserRepository();

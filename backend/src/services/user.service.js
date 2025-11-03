@@ -8,9 +8,7 @@ class UserService {
       throw new Error("Un utilisateur avec cet email existe déjà");
     }
 
-    if (!this.isValidEmail(userData.email)) {
-      throw new Error("Format d'email invalide");
-    }
+   
 
     const hashedPassword = await argon2.hash(userData.password, {
       type: argon2.argon2id,
@@ -31,11 +29,6 @@ class UserService {
     });
 
     return newUser;
-  }
-
-  isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
   }
 
   async getAll(jump) {
