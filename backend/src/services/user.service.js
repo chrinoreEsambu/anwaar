@@ -38,8 +38,8 @@ class UserService {
     return emailRegex.test(email);
   }
 
-  async getAll() {
-    const alluser = await userRepository.findAll();
+  async getAll(jump) {
+    const alluser = await userRepository.findAll(jump);
     if (!alluser) {
       return "vide";
     }

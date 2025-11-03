@@ -1,22 +1,24 @@
 const prisma = require("../config/prismaClient");
 
 class UserRepository {
-  async createUser (userData) {
+  async createUser(userData) {
     return await prisma.users.create({
       data: userData,
     });
   }
 
-  async findAll() {
+  async findAll(jump) {
+    const limit = 10;
     return await prisma.users.findMany({
       orderBy: {
-        createdAt: "desc",
+        createdAt: "asc",
       },
+      skip: jump,
+      take: limit,
     });
   }
 
   async findByEmail(email) {
-    // if (!email) return null;
     return await prisma.users.findUnique({
       where: { email },
     });

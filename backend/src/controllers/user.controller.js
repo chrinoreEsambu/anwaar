@@ -59,18 +59,19 @@ class UserController {
   }
 
   async alluser(req, res) {
+    const page = parseInt(req.query.page) || 1;
+    const limit = 10;
+    const jump = (page - 1) * limit;
     try {
-      const alluser = await userService.getAll();
-      res.status(200).json({ message: "okey", alluser });
+      const alluser = await userService.getAll(jump);
+      res.status(200).json({ message: "allUsers", alluser });
     } catch (error) {
       console.error("Erreur getAll users:", error);
-      res
-        .status(500)
-        .json({
-          success: false,
-          message: "Erreur serveur",
-          error: error.message,
-        });
+      res.status(500).json({
+        success: false,
+        message: "Erreur serveur",
+        error: error.message,
+      });
     }
   }
 }
