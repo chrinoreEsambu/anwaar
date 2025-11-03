@@ -7,9 +7,6 @@ class UserService {
     if (existingUser) {
       throw new Error("Un utilisateur avec cet email existe déjà");
     }
-
-   
-
     const hashedPassword = await argon2.hash(userData.password, {
       type: argon2.argon2id,
       memoryCost: 2 ** 15,
@@ -33,8 +30,8 @@ class UserService {
 
   async getAll(jump) {
     const alluser = await userRepository.findAll(jump);
-    if (!alluser) {
-      return "vide";
+    if (alluser.length <= 0) {
+      return "No users found";
     }
     return alluser;
   }
