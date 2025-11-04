@@ -1,8 +1,8 @@
 | Fonction                | Description                                     | Côté               |
 | ----------------------- | ----------------------------------------------- | ------------------ |
-| `register`  ok             | Créer un compte (hash avec Argon2, validations) | Backend + Frontend |
-| `login`                 | Connexion avec JWT (ou cookie si tu veux)       | Backend + Frontend |
-| `logout`                | Déconnexion (invalider le token côté client)    | Frontend           |
+| `register` ok           | Créer un compte (hash avec Argon2, validations) | Backend + Frontend |
+| `login` ok              | Connexion avec JWT (ou cookie si tu veux)       | Backend + Frontend |
+| `logout` todo Frontend  | Déconnexion (invalider le token côté client)    | Frontend           |
 | `getProfile`            | Récupérer les infos de l’utilisateur connecté   | Backend            |
 | `updateProfile`         | Modifier nom, email, etc.                       | Backend + Frontend |
 | `deleteAccount`         | Supprimer son compte                            | Backend            |

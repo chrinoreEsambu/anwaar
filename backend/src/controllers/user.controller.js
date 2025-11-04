@@ -87,8 +87,6 @@ class UserController {
         data: result,
       });
     } catch (error) {
-      console.error("Erreur login:", error);
-
       if (error.message.includes("incorrect")) {
         return res.status(401).json({
           success: false,

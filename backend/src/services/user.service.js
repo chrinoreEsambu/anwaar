@@ -42,7 +42,7 @@ class UserService {
     const user = await userRepository.findByEmail(email);
 
     if (!user) {
-      throw new Error("Email ou mot de passe incorrect");
+      throw new Error("Email ou mot de passe incorrecti");
     }
 
     const isPasswordValid = await argon2.verify(user.password, password);
@@ -61,11 +61,9 @@ class UserService {
       { expiresIn: "24h" }
     );
 
-    // 4. Retourner user sans password + token
-    const { password: _, ...userWithoutPassword } = user;
-
+    delete user.password;
     return {
-      user: userWithoutPassword,
+      user,
       token,
     };
   }
