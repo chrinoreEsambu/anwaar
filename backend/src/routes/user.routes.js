@@ -7,7 +7,6 @@ const {
   schekrole,
 } = require("../middlewares/middleware");
 
-// Routes publiques (pas de token requis)
 router.post(
   "/users",
   isValidEmail,
@@ -15,7 +14,6 @@ router.post(
 );
 router.post("/connexion", isValidEmail, userController.login);
 
-// Routes protégées (token requis + admin seulement)
 router.get(
   "/getUser",
   verifyToken,
