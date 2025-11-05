@@ -39,12 +39,14 @@ exports.verifyToken = (req, res, next) => {
   }
 };
 
-exports.schekrole = async (req, res) => {
-  const role = req.user.role;
+exports.schekrole = (req, res, next) => {
+  if (!req.user) {
+    return res.status(401).json({ message: "Token manquant ou invalide" });
+  }
 
-  if (role || role.toLowerCase() !== "admin") {
+  if (req.user.role.toLowerCase() !== "admin") {
     return res.status(403).json({ message: "Accès refusé, admin requis" });
   }
 
-  res.json({ data: "Secret admin" });
+  next();
 };

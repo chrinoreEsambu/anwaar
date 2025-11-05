@@ -14,10 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 const userRoutes = require("./src/routes/user.routes");
-const { isValidEmail } = require("./src/middlewares/middleware");
 
-app.use(isValidEmail);
-// app.use(scheckrole);
 app.use("/api", userRoutes);
 
 (async () => {
