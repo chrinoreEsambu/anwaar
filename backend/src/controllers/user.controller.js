@@ -80,6 +80,10 @@ class UserController {
       const { email, password } = req.body;
 
       const result = await userService.login(email, password);
+      
+      if (!result) {
+        
+      }
 
       return res.status(200).json({
         success: true,
