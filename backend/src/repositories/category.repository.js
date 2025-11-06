@@ -1,7 +1,15 @@
 const prisma = require("../config/prismaClient");
 
 class categoryRepository {
-    // hello
+  async createCategory(categoryData) {
+      const create = await prisma.category.create({
+          data: {
+              name: categoryData.name,
+              description: categoryData.description
+          }
+    });
+      return create;
+  }
 }
 
 module.exports = new categoryRepository();
