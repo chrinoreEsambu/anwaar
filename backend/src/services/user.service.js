@@ -68,51 +68,42 @@ class UserService {
     return alluser;
   }
 
-  async login(email, password) {
-    const user = await userRepository.findByEmail(email);
-
-    if (!user) {
-      throw new Error("Email ou mot de passe incorrect");
-    }
-
-    const isPasswordValid = await argon2.verify(user.password, password);
-
-    if (!isPasswordValid) {
-      throw new Error("Email ou mot de passe incorrect");
-    }
-
-    const token = jwt.sign(
-      {
-        userId: user.id,
-        email: user.email,
-        role: user.role,
-      },
-      process.env.JWT_SECRET,
-      { expiresIn: "5h" }
-    );
-
-    delete user.password;
-    return {
-      user,
-      token,
-    };
-  }
-  async userUpdate(email, name, first_name, password, birthdate, gender, role) {
-    const find = await userRepository.findByEmail(email);
+  async userUpdate(
+    oldEmail,
+    name,
+    first_name,
+    newEmail,
+    password,
+    birthdate,
+    gender,
+    role
+  ) {
+    const find = await userRepository.findByEmail(oldEmail);
     if (!find) {
-      throw new error("aucun n'utilisateur trouver");
+      throw new Error("Aucun utilisateur trouvé");
     }
-    const update = await userRepository.update({
-      email: email,
-      name: name,
-      first_name: first_name,
-      password: password,
-      birthdate: birthdate,
-      gender: gender,
-      role: role,
-    });
 
-    return { update };
+    const updateData = {};
+    if (name) updateData.name = name;
+    if (first_name) updateData.first_name = first_name;
+    if (newEmail) updateData.email = newEmail.toLowerCase();
+    if (password) {
+      updateData.password = await argon2.hash(password, {
+        type: argon2.argon2id,
+        memoryCost: 2 ** 15,
+        timeCost: 3,
+        hashLength: 50,
+        parallelism: 2,
+      });
+    }
+    if (birthdate) updateData.birthdate = new Date(birthdate);
+    if (gender) updateData.gender = gender;
+    if (role) updateData.role = role;
+
+    const updatedUser = await userRepository.update(oldEmail, updateData);
+
+    delete updatedUser.password;
+    return updatedUser;
   }
 }
 

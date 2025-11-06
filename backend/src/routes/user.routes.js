@@ -20,6 +20,10 @@ router.get(
   schekrole,
   userController.alluser.bind(userController)
 );
-router.put("/admin/update", isValidEmail, userController.updateUser);
+router.put(
+  "/admin/update",
+  isValidEmail,
+  userController.updateUser.bind(userController)
+);
 
 module.exports = router;

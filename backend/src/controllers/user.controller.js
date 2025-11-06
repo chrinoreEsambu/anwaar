@@ -104,31 +104,43 @@ class UserController {
     }
   }
   async updateUser(req, res) {
-    const { email: emailQuery } = req.query;
-    const { email, name, first_name, password, birthdate, gender, role } =
-      req.body;
     try {
-      const finder = await userService.userUpdate(
-        email,
+      const { email: emailQuery } = req.query; 
+      const { email, name, first_name, password, birthdate, gender, role } =
+        req.body;
+
+      if (!emailQuery) {
+        return res.status(400).json({
+          success: false,
+          message: "Email requis pour modification",
+        });
+      }
+
+      const updatedUser = await userService.userUpdate(
+        emailQuery,
         name,
         first_name,
+        email,
         password,
         birthdate,
         gender,
         role
       );
-      res.status(201).json({ message: "utilsateur modifier avec success", success: true,
-      data: finder }
-       
-      );
+
+      res.status(200).json({
+        success: true,
+        message: "Utilisateur modifié avec succès",
+        data: updatedUser,
+      });
     } catch (error) {
-      if (error.message.include == "aucun") {
-        res.status(404).json({
-          success: true,
-          message: "aucun n'utilisateur ne correspond à la recherche ",
+      if (error.message.includes("aucun")) {
+        return res.status(404).json({
+          success: false,
+          message: "Aucun utilisateur ne correspond à la recherche",
           error: error.message,
         });
       }
+
       res.status(500).json({
         success: false,
         message: "Erreur serveur",

@@ -24,8 +24,11 @@ class UserRepository {
     });
   }
 
-  async update(userinfo) {
-    return await prisma.users.update({ data: userinfo });
+  async update(email, updateData) {
+    return await prisma.users.update({
+      where: { email },
+      data: updateData,
+    });
   }
 
   async deleteUser(userid) {
