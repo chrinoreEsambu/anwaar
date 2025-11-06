@@ -5,7 +5,7 @@ class categoryServices {
     const existingCategorie = await categoryRepository.getAllCategoriesByname(
       categoryData.name
     );
-    if (existingUser) {
+    if (existingCategorie) {
       throw new Error("une categorie similaire existe déjà");
     }
     const createCatagory = await categoryRepository.createCategory({
