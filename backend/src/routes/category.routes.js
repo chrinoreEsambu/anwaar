@@ -5,13 +5,9 @@ const {
   verifyToken,
   schekrole,
 } = require("../middlewares/middleware");
+const categoryController = require("../controllers/category.controller");
 
 // Exemple de route de test
-router.get("/categories", (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: "Route catégories fonctionne",
-  });
-});
+router.post("/admin/createCategorie", categoryController.createCategory);
 
 module.exports = router;
