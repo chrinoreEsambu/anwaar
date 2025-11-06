@@ -8,17 +8,18 @@ const {
 } = require("../middlewares/middleware");
 
 router.post(
-  "/users",
+  "/admin/users",
   isValidEmail,
   userController.createUser.bind(userController)
 );
-router.post("/connexion", isValidEmail, userController.login);
+router.post("/admin/connexion", isValidEmail, userController.login);
 
 router.get(
-  "/getUser",
+  "/admin/getUser",
   verifyToken,
   schekrole,
   userController.alluser.bind(userController)
 );
+router.put("/admin/update", isValidEmail, userController.updateUser);
 
 module.exports = router;

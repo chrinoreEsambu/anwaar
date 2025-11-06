@@ -80,9 +80,8 @@ class UserController {
       const { email, password } = req.body;
 
       const result = await userService.login(email, password);
-      
+
       if (!result) {
-        
       }
 
       return res.status(200).json({
@@ -100,6 +99,39 @@ class UserController {
       return res.status(500).json({
         success: false,
         message: "Erreur lors de la connexion",
+        error: error.message,
+      });
+    }
+  }
+  async updateUser(req, res) {
+    const { email: emailQuery } = req.query;
+    const { email, name, first_name, password, birthdate, gender, role } =
+      req.body;
+    try {
+      const finder = await userService.userUpdate(
+        email,
+        name,
+        first_name,
+        password,
+        birthdate,
+        gender,
+        role
+      );
+      res.status(201).json({ message: "utilsateur modifier avec success", success: true,
+      data: finder }
+       
+      );
+    } catch (error) {
+      if (error.message.include == "aucun") {
+        res.status(404).json({
+          success: true,
+          message: "aucun n'utilisateur ne correspond à la recherche ",
+          error: error.message,
+        });
+      }
+      res.status(500).json({
+        success: false,
+        message: "Erreur serveur",
         error: error.message,
       });
     }

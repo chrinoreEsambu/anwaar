@@ -4,6 +4,36 @@ const argon2 = require("argon2");
 require("dotenv").config();
 
 class UserService {
+  async login(email, password) {
+    const user = await userRepository.findByEmail(email);
+
+    if (!user) {
+      throw new Error("Email ou mot de passe incorrect");
+    }
+
+    const isPasswordValid = await argon2.verify(user.password, password);
+
+    if (!isPasswordValid) {
+      throw new Error("Email ou mot de passe incorrect");
+    }
+
+    const token = jwt.sign(
+      {
+        userId: user.id,
+        email: user.email,
+        role: user.role,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "5h" }
+    );
+
+    delete user.password;
+    return {
+      user,
+      token,
+    };
+  }
+
   async createUser(userData) {
     const existingUser = await userRepository.findByEmail(userData.email);
     if (existingUser) {
@@ -58,7 +88,7 @@ class UserService {
         role: user.role,
       },
       process.env.JWT_SECRET,
-      { expiresIn: "8h" }
+      { expiresIn: "5h" }
     );
 
     delete user.password;
@@ -66,6 +96,23 @@ class UserService {
       user,
       token,
     };
+  }
+  async userUpdate(email, name, first_name, password, birthdate, gender, role) {
+    const find = await userRepository.findByEmail(email);
+    if (!find) {
+      throw new error("aucun n'utilisateur trouver");
+    }
+    const update = await userRepository.update({
+      email: email,
+      name: name,
+      first_name: first_name,
+      password: password,
+      birthdate: birthdate,
+      gender: gender,
+      role: role,
+    });
+
+    return { update };
   }
 }
 
