@@ -14,6 +14,11 @@ class categoryController {
         data: createCat,
       });
     } catch (error) {
+      if (error.message.include("similaire")) {
+        res
+          .status(409)
+          .json({ message: "une categorie similaire existe déja  " });
+      }
       return res.status(500).json({
         success: false,
         message: "Erreur lors de la création de l'utilisateur",
