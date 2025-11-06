@@ -31,8 +31,8 @@ class UserRepository {
     });
   }
 
-  async deleteUser(userid) {
-    return await prisma.users.delete({ where: { id: userid } });
+  async deleteUser(email) {
+    return await prisma.users.delete({ where: { email: email } });
   }
 }
 

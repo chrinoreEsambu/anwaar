@@ -149,6 +149,40 @@ class UserController {
       });
     }
   }
+  async deleteUSer(req, res) {
+    try {
+      const { email } = req.query;
+
+      if (!email) {
+        return res.status(400).json({
+          success: false,
+          message: "Email requis dans les paramètres de requête",
+        });
+      }
+
+      const userdelete = await userService.deleUser(email);
+      res.status(200).json({
+        success: true,
+        message: "Utilisateur supprimé avec succès",
+        data: userdelete,
+      });
+    } catch (error) {
+      console.error("Erreur deleteUser:", error);
+
+      if (error.message.includes("existe")) {
+        return res.status(404).json({
+          success: false,
+          message: "Aucun utilisateur trouvé",
+          error: error.message,
+        });
+      }
+      res.status(500).json({
+        success: false,
+        message: "Erreur serveur",
+        error: error.message,
+      });
+    }
+  }
 }
 
 module.exports = new UserController();

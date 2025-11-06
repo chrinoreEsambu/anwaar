@@ -28,4 +28,11 @@ router.put(
   userController.updateUser.bind(userController)
 );
 
+router.delete(
+  "/admin/delete",
+  verifyToken,
+  schekrole,
+  userController.deleteUSer
+);
+
 module.exports = router;

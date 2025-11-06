@@ -94,6 +94,14 @@ class UserService {
     delete update.password;
     return update;
   }
+  async deleUser(email) {
+    const existingUser = await userRepository.findByEmail(email);
+    if (!existingUser) {
+      throw new Error("L'utilisateur n'existe pas");
+    }
+    const deleteUser = await userRepository.deleteUser(email);
+    return deleteUser;
+  }
 }
 
 module.exports = new UserService();
