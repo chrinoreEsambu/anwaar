@@ -22,6 +22,8 @@ router.get(
 );
 router.put(
   "/admin/update",
+  verifyToken,
+  schekrole,
   isValidEmail,
   userController.updateUser.bind(userController)
 );
