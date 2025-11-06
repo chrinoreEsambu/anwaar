@@ -24,6 +24,9 @@ class categoryRepository {
       data: categoryUpdateData,
     });
   }
+  async deleteCategory(nane) {
+    return await prisma.category.delete({ where: { name: name } });
+  }
 }
 
 module.exports = new categoryRepository();
