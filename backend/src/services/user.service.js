@@ -58,7 +58,7 @@ class UserService {
         role: user.role,
       },
       process.env.JWT_SECRET,
-      { expiresIn: "24h" }
+      { expiresIn: "8h" }
     );
 
     delete user.password;
