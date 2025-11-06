@@ -14,7 +14,7 @@ class categoryController {
         data: createCat,
       });
     } catch (error) {
-      if (error.message.include("similaire")) {
+      if (error.message.includes("similaire")) {
         res
           .status(409)
           .json({ message: "une categorie similaire existe déja  " });

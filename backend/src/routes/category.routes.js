@@ -11,3 +11,4 @@ const categoryController = require("../controllers/category.controller");
 router.post("/admin/createCategorie", categoryController.createCategory);
 
 module.exports = router;
+
