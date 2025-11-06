@@ -14,8 +14,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 const userRoutes = require("./src/routes/user.routes");
+const categoryRoutes = require("./src/routes/category.routes");
 
 app.use("/api", userRoutes);
+app.use("/api", categoryRoutes);
 
 (async () => {
   try {
