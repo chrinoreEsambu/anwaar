@@ -2,10 +2,10 @@
 | ----------------------- | ----------------------------------------------- | ------------------ |
 | `register` ok           | Créer un compte (hash avec Argon2, validations) | Backend + Frontend |
 | `login` ok              | Connexion avec JWT (ou cookie si tu veux)       | Backend + Frontend |
-| `logout` todo Frontend  | Déconnexion (invalider le token côté client)    | Frontend           |
+| `logout` todo Frontend-  | Déconnexion (invalider le token côté client)    | Frontend           |
 | `getProfile`  ok          | Récupérer les infos de l’utilisateur connecté   | Backend            |
 | `updateProfile`     ok    | Modifier nom, email, etc.                       | Backend + Frontend |
-| `deleteAccount`         | Supprimer son compte                            | Backend            |
+| `deleteAccount`   ok      | Supprimer son compte                            | Backend            |
 | `getAllUsers` _(admin)_ | Liste des utilisateurs                          | Backend            |
 
 | Fonction           | Description                   | Côté               |

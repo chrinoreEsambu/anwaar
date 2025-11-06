@@ -9,6 +9,8 @@ const {
 
 router.post(
   "/admin/users",
+  verifyToken,
+  schekrole,
   isValidEmail,
   userController.createUser.bind(userController)
 );
@@ -33,6 +35,13 @@ router.delete(
   verifyToken,
   schekrole,
   userController.deleteUSer
+);
+
+// ------------------------UserRoute-----------
+router.post(
+  "/users",
+  isValidEmail,
+  userController.createUser.bind(userController)
 );
 
 module.exports = router;
