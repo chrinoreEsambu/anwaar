@@ -105,7 +105,7 @@ class UserController {
   }
   async updateUser(req, res) {
     try {
-      const { email: emailQuery } = req.query; 
+      const { email: emailQuery } = req.query;
       const { email, name, first_name, password, birthdate, gender, role } =
         req.body;
 
@@ -116,16 +116,15 @@ class UserController {
         });
       }
 
-      const updatedUser = await userService.userUpdate(
-        emailQuery,
+      const updatedUser = await userService.userUpdate({
+        email: emailQuery,
         name,
         first_name,
-        email,
         password,
         birthdate,
         gender,
-        role
-      );
+        role,
+      });
 
       res.status(200).json({
         success: true,
@@ -133,10 +132,12 @@ class UserController {
         data: updatedUser,
       });
     } catch (error) {
-      if (error.message.includes("aucun")) {
+      console.error("Erreur updateUser:", error);
+
+      if (error.message.includes("Aucun")) {
         return res.status(404).json({
           success: false,
-          message: "Aucun utilisateur ne correspond à la recherche",
+          message: "Aucun utilisateur trouvé",
           error: error.message,
         });
       }

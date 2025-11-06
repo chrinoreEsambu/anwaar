@@ -68,42 +68,31 @@ class UserService {
     return alluser;
   }
 
-  async userUpdate(
-    oldEmail,
-    name,
-    first_name,
-    newEmail,
-    password,
-    birthdate,
-    gender,
-    role
-  ) {
-    const find = await userRepository.findByEmail(oldEmail);
+  async userUpdate(updateData) {
+    const find = await userRepository.findByEmail(updateData.email);
     if (!find) {
       throw new Error("Aucun utilisateur trouvé");
     }
 
-    const updateData = {};
-    if (name) updateData.name = name;
-    if (first_name) updateData.first_name = first_name;
-    if (newEmail) updateData.email = newEmail.toLowerCase();
-    if (password) {
-      updateData.password = await argon2.hash(password, {
-        type: argon2.argon2id,
-        memoryCost: 2 ** 15,
-        timeCost: 3,
-        hashLength: 50,
-        parallelism: 2,
-      });
-    }
-    if (birthdate) updateData.birthdate = new Date(birthdate);
-    if (gender) updateData.gender = gender;
-    if (role) updateData.role = role;
+    const updatepassword = await argon2.hash(updateData.password, {
+      type: argon2.argon2id,
+      memoryCost: 2 ** 15,
+      timeCost: 3,
+      hashLength: 50,
+      parallelism: 2,
+    });
 
-    const updatedUser = await userRepository.update(oldEmail, updateData);
+    const update = await userRepository.update(updateData.email, {
+      name: updateData.name,
+      first_name: updateData.first_name,
+      password: updatepassword,
+      birthdate: new Date(updateData.birthdate),
+      gender: updateData.gender,
+      role: updateData.role,
+    });
 
-    delete updatedUser.password;
-    return updatedUser;
+    delete update.password;
+    return update;
   }
 }
 
