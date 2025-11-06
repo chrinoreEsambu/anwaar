@@ -12,6 +12,7 @@ class categoryServices {
       name: categoryData.name,
       description: categoryData.description,
     });
+    return createCatagory;
   }
 }
 
