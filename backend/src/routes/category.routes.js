@@ -7,8 +7,11 @@ const {
 } = require("../middlewares/middleware");
 const categoryController = require("../controllers/category.controller");
 
-// Exemple de route de test
-router.post("/admin/createCategorie", categoryController.createCategory);
+router.post(
+  "/admin/createCategorie",
+  verifyToken,
+  schekrole,
+  categoryController.createCategory
+);
 
 module.exports = router;
-

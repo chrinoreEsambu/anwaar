@@ -5,6 +5,7 @@ class categoryServices {
     const existingCategorie = await categoryRepository.getAllCategoriesByname(
       categoryData.name
     );
+
     if (existingCategorie) {
       throw new Error("une categorie similaire existe déjà");
     }
