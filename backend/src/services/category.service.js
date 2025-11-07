@@ -7,38 +7,33 @@ class categoryServices {
     );
 
     if (existingCategorie) {
-      throw new Error("une categorie similaire existe déjà");
+      throw new Error("Une catégorie similaire existe déjà");
     }
-    const createCatagory = await categoryRepository.createCategory({
+    const createCategory = await categoryRepository.createCategory({
       name: categoryData.name,
       description: categoryData.description,
     });
-    return createCatagory;
+    return createCategory;
   }
   async getAllCategory() {
     const getCategories = await categoryRepository.getAllCategories();
     return getCategories;
   }
   async updateCategory(categoryUpdateData) {
-    const existingCategorieName =
-      await categoryRepository.getAllCategoriesByname(
-        categoryUpdateData.namequery
-      );
+    const existingCategorie = await categoryRepository.getAllCategoriesByname(
+      categoryUpdateData.namequery
+    );
 
-    try {
-      const updatecategory = await categoryRepository.updateCategory(
-        categoryUpdateData.name,
-        {
-          description: categoryUpdateData.description,
-        }
-      );
-      return updatecategory;
-    } catch (error) {
-      if (!existingCategorieName) {
-        throw new Error("cette categorie n'existe pas");
-      }
-      throw error;
+    if (!existingCategorie) {
+      throw new Error("Cette catégorie n'existe pas");
     }
+
+    const updatecategory = await categoryRepository.updateCategory({
+      id: existingCategorie.id,
+      name: categoryUpdateData.name,
+      description: categoryUpdateData.description,
+    });
+    return updatecategory;
   }
 }
 
