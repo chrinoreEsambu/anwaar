@@ -28,11 +28,10 @@ class categoryServices {
       throw new Error("Cette catégorie n'existe pas");
     }
 
-    const updatecategory = await categoryRepository.updateCategory({
-      id: existingCategorie.id,
-      name: categoryUpdateData.name,
-      description: categoryUpdateData.description,
-    });
+    const updatecategory = await categoryRepository.updateCategory(
+      categoryUpdateData
+    );
+
     return updatecategory;
   }
 }

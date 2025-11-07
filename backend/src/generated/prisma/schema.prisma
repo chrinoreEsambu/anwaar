@@ -47,6 +47,7 @@ model Users {
   name       String
   first_name String
   email      String     @unique
+  password   String
   birthdate  DateTime
   gender     String
   role       ClientRole @default(client)
@@ -58,7 +59,7 @@ model Users {
 
 model Category {
   id          String @id @default(uuid())
-  name        String
+  name        String @unique
   description String @db.VarChar(600)
 
   Products Products[]

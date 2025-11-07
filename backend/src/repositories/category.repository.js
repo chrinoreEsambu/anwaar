@@ -14,11 +14,11 @@ class categoryRepository {
     return await prisma.category.findMany();
   }
   async getAllCategoriesByname(name) {
-    return await prisma.category.findFirst({ where: { name: name } });
+    return await prisma.category.findUnique({ where: { name: name } });
   }
   async updateCategory(categoryUpdateData) {
     return await prisma.category.update({
-      where: { id: categoryUpdateData.id },
+      where: { name: categoryUpdateData.namequery },
       data: {
         name: categoryUpdateData.name,
         description: categoryUpdateData.description,
