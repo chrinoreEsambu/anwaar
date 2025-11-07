@@ -30,7 +30,7 @@ class categoryServices {
           description: categoryUpdateData.description,
         }
       );
-      return updatecategory;
+      return updatecategory
     } catch (error) {
       if (!existingCategorieName) {
         throw new Error("cette categorie n'existe pas");
