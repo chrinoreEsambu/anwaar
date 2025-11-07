@@ -8,7 +8,7 @@ class categoryRepository {
         description: categoryData.description,
       },
     });
-    // return create;
+   
   }
 
   async getAllCategories() {

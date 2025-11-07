@@ -34,10 +34,44 @@ class categoryController {
     }
   }
   async getAllCategory(req, res) {
-    const getAllCategory = await categoryServices.getAllCategory();
-    res
-      .status(200)
-      .json({ message: "categiries disponible :", getAllCategory });
+    try {
+      const getAllCategory = await categoryServices.getAllCategory();
+      res
+        .status(200)
+        .json({ message: "categiries disponible :", getAllCategory });
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: "Erreur lors de la création de la catégorie",
+        error: error.message,
+      });
+    }
+  }
+
+  async updateCategory(req, res) {
+    const { name: namequery } = req.query;
+    const { description } = req.body;
+    try {
+      const update = await categoryServices.updateCategory({
+        name: namequery,
+        description: description,
+      });
+      res
+        .status(200)
+        .json({ message: "categorie modifier avec success", update });
+    } catch (error) {
+      if (error.message.includes("pas")) {
+        return res.status(409).json({
+          success: false,
+          message: "Désolé cette categorie n'existe pas ! ",
+        });
+      }
+      return res.status(500).json({
+        success: false,
+        message: "Erreur lors de la création de la catégorie",
+        error: error.message,
+      });
+    }
   }
 }
 

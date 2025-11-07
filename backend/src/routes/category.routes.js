@@ -13,6 +13,12 @@ router.post(
   schekrole,
   categoryController.createCategory
 );
-router.get("/admin/getAllCategory/", categoryController.getAllCategory);
+router.get(
+  "/admin/getAllCategory/",
+  verifyToken,
+  schekrole,
+  categoryController.getAllCategory
+);
+router.put("/admin/updateCategory/", categoryController.updateCategory);
 
 module.exports = router;

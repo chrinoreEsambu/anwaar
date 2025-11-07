@@ -108,8 +108,7 @@ class UserController {
   async updateUser(req, res) {
     try {
       const { email: emailQuery } = req.query;
-      const { email, name, first_name, password, birthdate, gender, role } =
-        req.body;
+      const { name, first_name, password, birthdate, gender, role } = req.body;
 
       if (!emailQuery) {
         return res.status(400).json({

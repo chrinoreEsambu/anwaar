@@ -19,6 +19,23 @@ class categoryServices {
     const getCategories = await categoryRepository.getAllCategories();
     return getCategories;
   }
+  async updateCategory(categoryUpdateData) {
+    const existingCategorieName =
+      await categoryRepository.getAllCategoriesByname(categoryUpdateData.name);
+
+    try {
+      const updatecategory = await categoryRepository.updateCategory({
+        name: categoryUpdateData.name,
+        description: categoryUpdateData.description,
+      });
+      return updatecategory;
+    } catch (error) {
+      if (!existingCategorieName) {
+        throw new Error("cette categorie n'existe pas");
+      }
+      throw error;
+    }
+  }
 }
 
 module.exports = new categoryServices();
