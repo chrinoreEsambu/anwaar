@@ -15,6 +15,10 @@ class categoryServices {
     });
     return createCatagory;
   }
+  async getAllCategory() {
+    const getCategories = await categoryRepository.getAllCategories();
+    return getCategories;
+  }
 }
 
 module.exports = new categoryServices();

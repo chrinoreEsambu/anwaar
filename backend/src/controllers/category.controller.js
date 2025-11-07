@@ -33,6 +33,12 @@ class categoryController {
       });
     }
   }
+  async getAllCategory(req, res) {
+    const getAllCategory = await categoryServices.getAllCategory();
+    res
+      .status(200)
+      .json({ message: "categiries disponible :", getAllCategory });
+  }
 }
 
 module.exports = new categoryController();

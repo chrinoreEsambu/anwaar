@@ -35,6 +35,7 @@ class UserController {
         success: true,
         message: "Utilisateur créé avec succès",
         data: user,
+        // chrinoro supprime le data et laise l'objet user dans faire partie message
       });
     } catch (error) {
       console.error("Erreur création utilisateur:", error);
@@ -88,6 +89,7 @@ class UserController {
         success: true,
         message: "Connexion réussie",
         data: result,
+        // chrinore parreile ici
       });
     } catch (error) {
       if (error.message.includes("incorrect")) {
@@ -130,6 +132,7 @@ class UserController {
         success: true,
         message: "Utilisateur modifié avec succès",
         data: updatedUser,
+        // chrinore parreile ici
       });
     } catch (error) {
       console.error("Erreur updateUser:", error);
@@ -165,6 +168,7 @@ class UserController {
         success: true,
         message: "Utilisateur supprimé avec succès",
         data: userdelete,
+        // chrinore parreile ici
       });
     } catch (error) {
       console.error("Erreur deleteUser:", error);

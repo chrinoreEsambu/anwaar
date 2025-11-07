@@ -13,5 +13,6 @@ router.post(
   schekrole,
   categoryController.createCategory
 );
+router.get("/admin/getAllCategory/", categoryController.getAllCategory);
 
 module.exports = router;

@@ -8,12 +8,11 @@ class categoryRepository {
         description: categoryData.description,
       },
     });
-    return create;
+    // return create;
   }
 
   async getAllCategories() {
     return await prisma.category.findMany();
-    // return getAll;
   }
   async getAllCategoriesByname(name) {
     return await prisma.category.findUnique({ where: { name: name } });
