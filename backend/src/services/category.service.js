@@ -19,7 +19,7 @@ class categoryServices {
     const getCategories = await categoryRepository.getAllCategories();
     return getCategories;
   }
-  async updateCategory(name, categoryUpdateData) {
+  async updateCategory( categoryUpdateData) {
     const existingCategorieName =
       await categoryRepository.getAllCategoriesByname(categoryUpdateData.name);
 
