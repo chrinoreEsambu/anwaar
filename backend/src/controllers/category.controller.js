@@ -70,7 +70,7 @@ class categoryController {
       res.status(200).json({
         success: true,
         message: "Catégorie modifiée avec succès",
-        data: update,
+        update,
       });
     } catch (error) {
       if (error.message.includes("existe pas")) {
