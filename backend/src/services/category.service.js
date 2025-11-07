@@ -32,7 +32,7 @@ class categoryServices {
       );
       return updatecategory;
     } catch (error) {
-      if (!existingCategorieName) {
+      if (!existingCategorieName) 
         throw new Error("cette categorie n'existe pas");
       }
       throw error;
