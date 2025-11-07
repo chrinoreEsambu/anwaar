@@ -27,7 +27,7 @@ class categoryServices {
       const updatecategory = await categoryRepository.updateCategory(
         categoryUpdateData.name,
         {
-          description: categryUpdateData.description,
+          description: categoryUpdateData.description,
         }
       );
       return updatecategory;
