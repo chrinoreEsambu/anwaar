@@ -8,7 +8,6 @@ class categoryRepository {
         description: categoryData.description,
       },
     });
-   
   }
 
   async getAllCategories() {
@@ -17,9 +16,9 @@ class categoryRepository {
   async getAllCategoriesByname(name) {
     return await prisma.category.findUnique({ where: { name: name } });
   }
-  async updateCategory(name, categoryUpdateData) {
+  async updateCategory(categoryUpdateData) {
     return await prisma.category.update({
-      where: { name: name },
+      where: { name: categoryUpdateData.name },
       data: categoryUpdateData,
     });
   }

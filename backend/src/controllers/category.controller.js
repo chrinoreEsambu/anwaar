@@ -50,10 +50,11 @@ class categoryController {
 
   async updateCategory(req, res) {
     const { name: namequery } = req.query;
-    const { description } = req.body;
+    const { name,description } = req.body;
     try {
       const update = await categoryServices.updateCategory({
-        name: namequery,
+        namequery,
+        name: name,
         description: description,
       });
       res
