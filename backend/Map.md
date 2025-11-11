@@ -13,7 +13,7 @@
 | `createCategory` ok   | Ajouter une catégorie (admin) | Backend + Frontend |
 | `getAllCategories` ok | Voir toutes les catégories    | Backend + Frontend |
 | `updateCategory` ok   | Modifier une catégorie        | Backend            |
-| `deleteCategory`      | Supprimer une catégorie       | Backend            |
+| `deleteCategory`  ok    | Supprimer une catégorie       | Backend            |
 
 | Fonction           | Description                          | Côté               |
 | ------------------ | ------------------------------------ | ------------------ |
