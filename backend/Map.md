@@ -2,28 +2,27 @@
 | ----------------------- | ----------------------------------------------- | ------------------ |
 | `register` ok           | Créer un compte (hash avec Argon2, validations) | Backend + Frontend |
 | `login` ok              | Connexion avec JWT (ou cookie si tu veux)       | Backend + Frontend |
-| `logout` todo Frontend-  | Déconnexion (invalider le token côté client)    | Frontend           |
-| `getProfile`  ok          | Récupérer les infos de l’utilisateur connecté   | Backend            |
-| `updateProfile`     ok    | Modifier nom, email, etc.                       | Backend + Frontend |
-| `deleteAccount`   ok      | Supprimer son compte                            | Backend            |
+| `logout` todo Frontend- | Déconnexion (invalider le token côté client)    | Frontend           |
+| `getProfile` ok         | Récupérer les infos de l’utilisateur connecté   | Backend            |
+| `updateProfile` ok      | Modifier nom, email, etc.                       | Backend + Frontend |
+| `deleteAccount` ok      | Supprimer son compte                            | Backend            |
 | `getAllUsers` _(admin)_ | Liste des utilisateurs                          | Backend            |
 
-| Fonction           | Description                   | Côté               |
-| ------------------ | ----------------------------- | ------------------ |
-| `createCategory`   | Ajouter une catégorie (admin) | Backend + Frontend |
-| `getAllCategories` | Voir toutes les catégories    | Backend + Frontend |
-| `updateCategory`   | Modifier une catégorie        | Backend            |
-| `deleteCategory`   | Supprimer une catégorie       | Backend            |
+| Fonction              | Description                   | Côté               |
+| --------------------- | ----------------------------- | ------------------ |
+| `createCategory` ok   | Ajouter une catégorie (admin) | Backend + Frontend |
+| `getAllCategories` ok | Voir toutes les catégories    | Backend + Frontend |
+| `updateCategory` ok   | Modifier une catégorie        | Backend            |
+| `deleteCategory`      | Supprimer une catégorie       | Backend            |
 
-
-| Fonction | Description | Côté |
+| Fonction           | Description                          | Côté               |
 | ------------------ | ------------------------------------ | ------------------ |
-| `createProduct` | Ajouter un produit (admin) | Backend + Frontend |
-| `getAllProducts` | Liste paginée / filtrée des produits | Backend + Frontend |
-| `getProductById` | Voir les détails d’un produit | Backend + Frontend |
-| `updateProduct` | Modifier un produit | Backend |
-| `deleteProduct` | Supprimer un produit | Backend |
-| `hide` / `display` | Masquer / afficher un produit | Backend |
+| `createProduct`    | Ajouter un produit (admin)           | Backend + Frontend |
+| `getAllProducts`   | Liste paginée / filtrée des produits | Backend + Frontend |
+| `getProductById`   | Voir les détails d’un produit        | Backend + Frontend |
+| `updateProduct`    | Modifier un produit                  | Backend            |
+| `deleteProduct`    | Supprimer un produit                 | Backend            |
+| `hide` / `display` | Masquer / afficher un produit        | Backend            |
 
 | Fonction            | Description                                            | Côté               |
 | ------------------- | ------------------------------------------------------ | ------------------ |
