@@ -87,8 +87,7 @@ class categoryController {
     }
   }
   async deleteCategory(req, res) {
-    // const { name: namequery } = req.query;
-    const namequery = toLowerCase(req.query.namequery);
+    const { name: namequery } = req.query;
 
     if (!namequery) {
       return res.status(400).json({

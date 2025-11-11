@@ -36,14 +36,14 @@ class categoryServices {
   }
   async deleteCategory(categorydeleteData) {
     const existingCategorie = await categoryRepository.getAllCategoriesByname(
-      categorydeleteData.namequery
+      categorydeleteData.namequeries
     );
 
     if (!existingCategorie) {
       throw new Error("Cette catégorie n'existe pas");
     }
     const deleteCategory = await categoryRepository.deleteCategory(
-      categorydeleteData.namequery
+      categorydeleteData.namequeries
     );
     return deleteCategory;
   }
