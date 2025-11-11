@@ -20,5 +20,6 @@ router.get(
   categoryController.getAllCategory
 );
 router.put("/admin/updateCategory/", categoryController.updateCategory);
+router.delete("/admin/delete/:name", categoryController.deleteCategory);
 
 module.exports = router;
