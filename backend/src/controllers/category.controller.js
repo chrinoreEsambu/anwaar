@@ -87,7 +87,8 @@ class categoryController {
     }
   }
   async deleteCategory(req, res) {
-    const { namequery } = req.query;
+    const { name:namequery } = req.query;
+    
     try {
       const deleteCategory = await categoryServices.deleteCategory(namequery);
       res
