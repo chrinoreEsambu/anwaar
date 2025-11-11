@@ -86,6 +86,14 @@ class categoryController {
       });
     }
   }
+  async deleteCategory(req, res) {
+    const { namequery } = req.query;
+    try {
+      
+    } catch (error) {
+      
+    }
+  }
 }
 
 module.exports = new categoryController();
