@@ -89,9 +89,22 @@ class categoryController {
   async deleteCategory(req, res) {
     const { namequery } = req.query;
     try {
-      
+      const deleteCategory = await categoryServices.deleteCategory(
+        deleteCategory
+      );
+      res.status(200).json({})
     } catch (error) {
-      
+      if (error.message.includes("existe pas")) {
+        return res.status(404).json({
+          success: false,
+          message: "Désolé, cette catégorie n'existe pas",
+        });
+      }
+      return res.status(500).json({
+        success: false,
+        message: "Erreur lors de la suppresion de la catégorie",
+        error: error.message,
+      });
     }
   }
 }
