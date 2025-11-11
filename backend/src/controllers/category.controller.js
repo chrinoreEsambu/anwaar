@@ -87,15 +87,30 @@ class categoryController {
     }
   }
   async deleteCategory(req, res) {
-    const { name:namequery } = req.query;
-    
+    // const { name: namequery } = req.query;
+    const namequery = toLowerCase(req.query.namequery);
+
+    if (!namequery) {
+      return res.status(400).json({
+        success: false,
+        message: "Le paramètre ?name est requis",
+      });
+    }
+
     try {
-      const deleteCategory = await categoryServices.deleteCategory(namequery);
-      res
-        .status(200)
-        .json({ message: "category supprimé avec succès", deleteCategory });
+      const deleteCategory = await categoryServices.deleteCategory({
+        namequery,
+      });
+      res.status(200).json({
+        success: true,
+        message: "Catégorie supprimée avec succès",
+        data: deleteCategory,
+      });
     } catch (error) {
-      if (error.message.includes("existe pas")) {
+      if (
+        error.message.includes("n'existe pas") ||
+        error.message.includes("n'existe")
+      ) {
         return res.status(404).json({
           success: false,
           message: "Désolé, cette catégorie n'existe pas",
@@ -103,7 +118,7 @@ class categoryController {
       }
       return res.status(500).json({
         success: false,
-        message: "Erreur lors de la suppresion de la catégorie",
+        message: "Erreur lors de la suppression de la catégorie",
         error: error.message,
       });
     }

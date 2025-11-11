@@ -25,8 +25,8 @@ class categoryRepository {
       },
     });
   }
-  async deleteCategory(namequery) {
-    return await prisma.category.delete({ where: { name: namequery } });
+  async deleteCategory(name) {
+    return await prisma.category.delete({ where: { name: name } });
   }
 }
 

@@ -19,7 +19,17 @@ router.get(
   schekrole,
   categoryController.getAllCategory
 );
-router.put("/admin/updateCategory/", categoryController.updateCategory);
-router.delete("/admin/deleteC/:namequery", categoryController.deleteCategory);
+router.put(
+  "/admin/updateCategory/",
+  verifyToken,
+  schekrole,
+  categoryController.updateCategory
+);
+router.delete(
+  "/admin/deleteC",
+  verifyToken,
+  schekrole,
+  categoryController.deleteCategory
+);
 
 module.exports = router;
