@@ -92,7 +92,7 @@ class categoryController {
     if (!namequery) {
       return res.status(400).json({
         success: false,
-        message: "Le paramètre 'name' est requis (utiliser ?name=...)",
+        message: "Le paramètre manquant",
       });
     }
 
