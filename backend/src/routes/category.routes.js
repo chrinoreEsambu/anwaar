@@ -26,7 +26,7 @@ router.put(
   categoryController.updateCategory
 );
 router.delete(
-  "/admin/deleteC",
+  "/admin/deleteC/:namequery",
   verifyToken,
   schekrole,
   categoryController.deleteCategory
