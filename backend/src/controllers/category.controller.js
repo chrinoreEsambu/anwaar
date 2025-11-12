@@ -87,8 +87,8 @@ class categoryController {
     }
   }
   async deleteCategory(req, res) {
-    // support path param /admin/deleteC/:namequery and fallback to ?name=
-    const raw = req.params.namequery || req.query.name || req.query.namequery;
+    const raw =
+      req.params?.namequery || req.query?.name || req.query?.namequery;
 
     if (!raw) {
       return res.status(400).json({
@@ -97,7 +97,7 @@ class categoryController {
       });
     }
 
-    const namequery = String(raw).toLowerCase().trim();
+    const namequery = String(raw);
 
     try {
       const deleteCategory = await categoryServices.deleteCategory({
