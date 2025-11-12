@@ -87,17 +87,14 @@ class categoryController {
     }
   }
   async deleteCategory(req, res) {
-    // Query-only mode: expect ?name=...
-    const raw = req.query && (req.query.name || req.query.namequery);
+    const namequery = req.query && (req.query.name || req.query.namequery);
 
-    if (!raw) {
+    if (!namequery) {
       return res.status(400).json({
         success: false,
         message: "Le paramètre 'name' est requis (utiliser ?name=...)",
       });
     }
-
-    const namequery = String(raw).toLowerCase().trim();
 
     try {
       const deleteCategory = await categoryServices.deleteCategory({
