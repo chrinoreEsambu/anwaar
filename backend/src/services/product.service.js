@@ -12,7 +12,7 @@ class productService {
 
     if (productData.category) {
       const existingCategory = await categoryRepository.getCategoryByName(
-        productData.categor
+        productData.category
       );
       if (!existingCategory) {
         throw new Error("La catégorie spécifiée n'existe pas");
