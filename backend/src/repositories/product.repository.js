@@ -6,6 +6,9 @@ class productRepository {
       data: productData,
     });
   }
+  async findProductByName(name) {
+    return await prisma.products.findUnique({ where: { name: name } });
+  }
 }
 
 module.exports = new productRepository();

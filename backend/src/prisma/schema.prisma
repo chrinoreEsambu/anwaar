@@ -68,7 +68,7 @@ model Category {
 model Products {
   id String @id @default(uuid())
   reference String
-  name String
+  name String @unique
   description String @db.VarChar(600)
   price Decimal
   picture_url String
