@@ -8683,11 +8683,11 @@ export namespace Prisma {
 
   export type ProductsWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    name?: string
     AND?: ProductsWhereInput | ProductsWhereInput[]
     OR?: ProductsWhereInput[]
     NOT?: ProductsWhereInput | ProductsWhereInput[]
     reference?: StringFilter<"Products"> | string
-    name?: StringFilter<"Products"> | string
     description?: StringFilter<"Products"> | string
     price?: DecimalFilter<"Products"> | Decimal | DecimalJsLike | number | string
     picture_url?: StringFilter<"Products"> | string
@@ -8696,7 +8696,7 @@ export namespace Prisma {
     categoryId?: StringNullableFilter<"Products"> | string | null
     category?: XOR<CategoryNullableScalarRelationFilter, CategoryWhereInput> | null
     OrderItems?: OrderItemsListRelationFilter
-  }, "id">
+  }, "id" | "name">
 
   export type ProductsOrderByWithAggregationInput = {
     id?: SortOrder
