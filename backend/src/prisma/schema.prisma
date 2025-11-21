@@ -75,8 +75,8 @@ model Products {
   state ProductState @default(hide)
   createdAt DateTime @default(now())
 
-  categoryId String?
-  category Category? @relation(fields: [categoryId], references: [id])
+  categoryName String?
+  category Category? @relation(fields: [categoryName], references: [name])
 
   OrderItems OrderItems[]
 }

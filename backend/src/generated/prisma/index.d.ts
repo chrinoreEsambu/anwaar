@@ -3720,7 +3720,7 @@ export namespace Prisma {
     picture_url: string | null
     state: $Enums.ProductState | null
     createdAt: Date | null
-    categoryId: string | null
+    categoryName: string | null
   }
 
   export type ProductsMaxAggregateOutputType = {
@@ -3732,7 +3732,7 @@ export namespace Prisma {
     picture_url: string | null
     state: $Enums.ProductState | null
     createdAt: Date | null
-    categoryId: string | null
+    categoryName: string | null
   }
 
   export type ProductsCountAggregateOutputType = {
@@ -3744,7 +3744,7 @@ export namespace Prisma {
     picture_url: number
     state: number
     createdAt: number
-    categoryId: number
+    categoryName: number
     _all: number
   }
 
@@ -3766,7 +3766,7 @@ export namespace Prisma {
     picture_url?: true
     state?: true
     createdAt?: true
-    categoryId?: true
+    categoryName?: true
   }
 
   export type ProductsMaxAggregateInputType = {
@@ -3778,7 +3778,7 @@ export namespace Prisma {
     picture_url?: true
     state?: true
     createdAt?: true
-    categoryId?: true
+    categoryName?: true
   }
 
   export type ProductsCountAggregateInputType = {
@@ -3790,7 +3790,7 @@ export namespace Prisma {
     picture_url?: true
     state?: true
     createdAt?: true
-    categoryId?: true
+    categoryName?: true
     _all?: true
   }
 
@@ -3889,7 +3889,7 @@ export namespace Prisma {
     picture_url: string
     state: $Enums.ProductState
     createdAt: Date
-    categoryId: string | null
+    categoryName: string | null
     _count: ProductsCountAggregateOutputType | null
     _avg: ProductsAvgAggregateOutputType | null
     _sum: ProductsSumAggregateOutputType | null
@@ -3920,7 +3920,7 @@ export namespace Prisma {
     picture_url?: boolean
     state?: boolean
     createdAt?: boolean
-    categoryId?: boolean
+    categoryName?: boolean
     category?: boolean | Products$categoryArgs<ExtArgs>
     OrderItems?: boolean | Products$OrderItemsArgs<ExtArgs>
     _count?: boolean | ProductsCountOutputTypeDefaultArgs<ExtArgs>
@@ -3935,7 +3935,7 @@ export namespace Prisma {
     picture_url?: boolean
     state?: boolean
     createdAt?: boolean
-    categoryId?: boolean
+    categoryName?: boolean
     category?: boolean | Products$categoryArgs<ExtArgs>
   }, ExtArgs["result"]["products"]>
 
@@ -3948,7 +3948,7 @@ export namespace Prisma {
     picture_url?: boolean
     state?: boolean
     createdAt?: boolean
-    categoryId?: boolean
+    categoryName?: boolean
     category?: boolean | Products$categoryArgs<ExtArgs>
   }, ExtArgs["result"]["products"]>
 
@@ -3961,10 +3961,10 @@ export namespace Prisma {
     picture_url?: boolean
     state?: boolean
     createdAt?: boolean
-    categoryId?: boolean
+    categoryName?: boolean
   }
 
-  export type ProductsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "reference" | "name" | "description" | "price" | "picture_url" | "state" | "createdAt" | "categoryId", ExtArgs["result"]["products"]>
+  export type ProductsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "reference" | "name" | "description" | "price" | "picture_url" | "state" | "createdAt" | "categoryName", ExtArgs["result"]["products"]>
   export type ProductsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | Products$categoryArgs<ExtArgs>
     OrderItems?: boolean | Products$OrderItemsArgs<ExtArgs>
@@ -3992,7 +3992,7 @@ export namespace Prisma {
       picture_url: string
       state: $Enums.ProductState
       createdAt: Date
-      categoryId: string | null
+      categoryName: string | null
     }, ExtArgs["result"]["products"]>
     composites: {}
   }
@@ -4426,7 +4426,7 @@ export namespace Prisma {
     readonly picture_url: FieldRef<"Products", 'String'>
     readonly state: FieldRef<"Products", 'ProductState'>
     readonly createdAt: FieldRef<"Products", 'DateTime'>
-    readonly categoryId: FieldRef<"Products", 'String'>
+    readonly categoryName: FieldRef<"Products", 'String'>
   }
     
 
@@ -8310,7 +8310,7 @@ export namespace Prisma {
     picture_url: 'picture_url',
     state: 'state',
     createdAt: 'createdAt',
-    categoryId: 'categoryId'
+    categoryName: 'categoryName'
   };
 
   export type ProductsScalarFieldEnum = (typeof ProductsScalarFieldEnum)[keyof typeof ProductsScalarFieldEnum]
@@ -8662,7 +8662,7 @@ export namespace Prisma {
     picture_url?: StringFilter<"Products"> | string
     state?: EnumProductStateFilter<"Products"> | $Enums.ProductState
     createdAt?: DateTimeFilter<"Products"> | Date | string
-    categoryId?: StringNullableFilter<"Products"> | string | null
+    categoryName?: StringNullableFilter<"Products"> | string | null
     category?: XOR<CategoryNullableScalarRelationFilter, CategoryWhereInput> | null
     OrderItems?: OrderItemsListRelationFilter
   }
@@ -8676,7 +8676,7 @@ export namespace Prisma {
     picture_url?: SortOrder
     state?: SortOrder
     createdAt?: SortOrder
-    categoryId?: SortOrderInput | SortOrder
+    categoryName?: SortOrderInput | SortOrder
     category?: CategoryOrderByWithRelationInput
     OrderItems?: OrderItemsOrderByRelationAggregateInput
   }
@@ -8693,7 +8693,7 @@ export namespace Prisma {
     picture_url?: StringFilter<"Products"> | string
     state?: EnumProductStateFilter<"Products"> | $Enums.ProductState
     createdAt?: DateTimeFilter<"Products"> | Date | string
-    categoryId?: StringNullableFilter<"Products"> | string | null
+    categoryName?: StringNullableFilter<"Products"> | string | null
     category?: XOR<CategoryNullableScalarRelationFilter, CategoryWhereInput> | null
     OrderItems?: OrderItemsListRelationFilter
   }, "id" | "name">
@@ -8707,7 +8707,7 @@ export namespace Prisma {
     picture_url?: SortOrder
     state?: SortOrder
     createdAt?: SortOrder
-    categoryId?: SortOrderInput | SortOrder
+    categoryName?: SortOrderInput | SortOrder
     _count?: ProductsCountOrderByAggregateInput
     _avg?: ProductsAvgOrderByAggregateInput
     _max?: ProductsMaxOrderByAggregateInput
@@ -8727,7 +8727,7 @@ export namespace Prisma {
     picture_url?: StringWithAggregatesFilter<"Products"> | string
     state?: EnumProductStateWithAggregatesFilter<"Products"> | $Enums.ProductState
     createdAt?: DateTimeWithAggregatesFilter<"Products"> | Date | string
-    categoryId?: StringNullableWithAggregatesFilter<"Products"> | string | null
+    categoryName?: StringNullableWithAggregatesFilter<"Products"> | string | null
   }
 
   export type OrdersWhereInput = {
@@ -9091,7 +9091,7 @@ export namespace Prisma {
     picture_url: string
     state?: $Enums.ProductState
     createdAt?: Date | string
-    categoryId?: string | null
+    categoryName?: string | null
     OrderItems?: OrderItemsUncheckedCreateNestedManyWithoutProductsInput
   }
 
@@ -9117,7 +9117,7 @@ export namespace Prisma {
     picture_url?: StringFieldUpdateOperationsInput | string
     state?: EnumProductStateFieldUpdateOperationsInput | $Enums.ProductState
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    categoryName?: NullableStringFieldUpdateOperationsInput | string | null
     OrderItems?: OrderItemsUncheckedUpdateManyWithoutProductsNestedInput
   }
 
@@ -9130,7 +9130,7 @@ export namespace Prisma {
     picture_url: string
     state?: $Enums.ProductState
     createdAt?: Date | string
-    categoryId?: string | null
+    categoryName?: string | null
   }
 
   export type ProductsUpdateManyMutationInput = {
@@ -9153,7 +9153,7 @@ export namespace Prisma {
     picture_url?: StringFieldUpdateOperationsInput | string
     state?: EnumProductStateFieldUpdateOperationsInput | $Enums.ProductState
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    categoryName?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OrdersCreateInput = {
@@ -9570,7 +9570,7 @@ export namespace Prisma {
     picture_url?: SortOrder
     state?: SortOrder
     createdAt?: SortOrder
-    categoryId?: SortOrder
+    categoryName?: SortOrder
   }
 
   export type ProductsAvgOrderByAggregateInput = {
@@ -9586,7 +9586,7 @@ export namespace Prisma {
     picture_url?: SortOrder
     state?: SortOrder
     createdAt?: SortOrder
-    categoryId?: SortOrder
+    categoryName?: SortOrder
   }
 
   export type ProductsMinOrderByAggregateInput = {
@@ -9598,7 +9598,7 @@ export namespace Prisma {
     picture_url?: SortOrder
     state?: SortOrder
     createdAt?: SortOrder
-    categoryId?: SortOrder
+    categoryName?: SortOrder
   }
 
   export type ProductsSumOrderByAggregateInput = {
@@ -10554,7 +10554,7 @@ export namespace Prisma {
     picture_url?: StringFilter<"Products"> | string
     state?: EnumProductStateFilter<"Products"> | $Enums.ProductState
     createdAt?: DateTimeFilter<"Products"> | Date | string
-    categoryId?: StringNullableFilter<"Products"> | string | null
+    categoryName?: StringNullableFilter<"Products"> | string | null
   }
 
   export type CategoryCreateWithoutProductsInput = {
@@ -10848,7 +10848,7 @@ export namespace Prisma {
     picture_url: string
     state?: $Enums.ProductState
     createdAt?: Date | string
-    categoryId?: string | null
+    categoryName?: string | null
   }
 
   export type ProductsCreateOrConnectWithoutOrderItemsInput = {
@@ -10929,7 +10929,7 @@ export namespace Prisma {
     picture_url?: StringFieldUpdateOperationsInput | string
     state?: EnumProductStateFieldUpdateOperationsInput | $Enums.ProductState
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    categoryName?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OrdersCreateWithoutPaiementInput = {
