@@ -5,8 +5,8 @@ class productController {
     const { name, description, price, state, categoryName } = req.body;
     if (!name || !description || !price || !state || !categoryName) {
       return res
-        .status(404)
-        .json({ message: "Veuillez remplir les champs vide !" });
+        .status(400)
+        .json({ message: "Veuillez remplir tous les champs !" });
     }
     const file = req.file;
     try {
@@ -19,19 +19,19 @@ class productController {
         file,
       };
       const create = await productService.createProduct(productData, file);
-      return status(201).json({
-        success: false,
-        message: "Produit créée avec succès",
+      return res.status(201).json({
+        success: true,
+        message: "Produit créé avec succès",
         create,
       });
     } catch (error) {
       if (error.message.includes("existe déjà")) {
         return res.status(409).json({
-          message: " Un produit avec ce nom existe déjà",
+          message: "Un produit avec ce nom existe déjà",
         });
       }
       if (error.message.includes("n'existe pas")) {
-        return res.status(409).json({
+        return res.status(400).json({
           message: "La catégorie spécifiée n'existe pas",
         });
       }
@@ -44,4 +44,4 @@ class productController {
   }
 }
 
-module.exports = productController();
+module.exports = new productController();
