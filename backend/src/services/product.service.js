@@ -1,9 +1,9 @@
 const productRepository = require("../repositories/product.repository");
 const categoryRepository = require("../repositories/category.repository");
+const cloudinary = require("../config/cloudinary");
 
 class productService {
-  async createProduct(productData) {
-    
+  async createProduct(productData, file) {
     const existingProduct = await productRepository.findByName(
       productData.name
     );
@@ -19,13 +19,21 @@ class productService {
         throw new Error("La catégorie spécifiée n'existe pas");
       }
     }
+    let pictureUrl = null;
+
+    if (file) {
+      const upload = cloudinary.uploader.upload(file.path, {
+        folder: "products",
+      });
+    }
+    pictureUrl = uploaded.secure_url;
 
     const create = await productRepository.createProduct({
       reference: productData.reference,
       name: productData.name,
       description: productData.description,
       price: productData.price,
-      picture_url: productData.picture_url,
+      picture_url: pictureUrl,
       state: productData.state,
       categoryId: productData.category,
     });
