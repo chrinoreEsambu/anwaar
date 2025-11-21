@@ -27,7 +27,7 @@ class productService {
       });
     }
     pictureUrl = uploaded.secure_url;
-
+const productReference = 
     const create = await productRepository.createProduct({
       reference: productData.reference,
       name: productData.name,
