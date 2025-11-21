@@ -35,7 +35,7 @@ class productService {
       price: productData.price,
       picture_url: pictureUrl,
       state: productData.state,
-      categoryId: productData.category,
+      categoryName: productData.category,
     });
 
     return create;
