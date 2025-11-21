@@ -3,6 +3,7 @@ const categoryRepository = require("../repositories/category.repository");
 
 class productService {
   async createProduct(productData) {
+    
     const existingProduct = await productRepository.findByName(
       productData.name
     );
