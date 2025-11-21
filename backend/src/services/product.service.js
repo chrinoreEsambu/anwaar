@@ -30,8 +30,10 @@ class productService {
     pictureUrl = uploaded.secure_url;
     const date = new Date().getFullYear();
     const uuid = crypto.randomUUID();
+    const shortuuid = uuid.substring(0, 8);
+    const suffix = `${shortuuid}-${date}`;
     const create = await productRepository.createProduct({
-      reference: productData.reference,
+      reference: suffix,
       name: productData.name,
       description: productData.description,
       price: productData.price,
