@@ -2,22 +2,23 @@ const productService = require("../services/product.service");
 
 class productController {
   async createProduct(req, res) {
-    const { name, description, price, state, categoryName, file } = req.body;
-    if (!name || !description || !price || !state || !categoryName || !file) {
+    const { name, description, price, state, categoryName } = req.body;
+    if (!name || !description || !price || !state || !categoryName) {
       return res
         .status(404)
         .json({ message: "Veuillez remplir les champs vide !" });
     }
+    const file = req.file;
     try {
-      const createProduct = await productService.createProduct({
-        reference,
+      const productData = {
         name,
         description,
         price,
         state,
         categoryName,
         file,
-      });
+      };
+      const create = await productService.createProduct(productData, file);
     } catch (error) {
       if (error.message.includes("existe déjà")) {
         return res.status(409).json({
@@ -37,3 +38,5 @@ class productController {
     }
   }
 }
+
+module.exports = productController();
