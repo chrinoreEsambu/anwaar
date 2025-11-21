@@ -15,10 +15,11 @@ app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 const userRoutes = require("./src/routes/user.routes");
 const categoryRoutes = require("./src/routes/category.routes");
+const productRoutes = require("./src/routes/product.routes");
 
 app.use("/api", userRoutes);
 app.use("/api", categoryRoutes);
-
+app.use("/api", productRoutes);
 (async () => {
   try {
     app.listen(port, "0.0.0.0", () => {
