@@ -19,6 +19,11 @@ class productController {
         file,
       };
       const create = await productService.createProduct(productData, file);
+      return status(201).json({
+        success: false,
+        message: "Produit créée avec succès",
+        create,
+      });
     } catch (error) {
       if (error.message.includes("existe déjà")) {
         return res.status(409).json({

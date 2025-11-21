@@ -32,6 +32,7 @@ class productService {
     const uuid = crypto.randomUUID();
     const shortuuid = uuid.substring(0, 8);
     const suffix = `${shortuuid}-${date}`;
+
     const create = await productRepository.createProduct({
       reference: suffix,
       name: productData.name,
