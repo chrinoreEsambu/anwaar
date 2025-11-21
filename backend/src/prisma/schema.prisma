@@ -71,7 +71,7 @@ model Products {
   name String @unique
   description String @db.VarChar(600)
   price Decimal
-  picture_url String
+  picture_url String?
   state ProductState @default(hide)
   createdAt DateTime @default(now())
 

@@ -3886,7 +3886,7 @@ export namespace Prisma {
     name: string
     description: string
     price: Decimal
-    picture_url: string
+    picture_url: string | null
     state: $Enums.ProductState
     createdAt: Date
     categoryName: string | null
@@ -3989,7 +3989,7 @@ export namespace Prisma {
       name: string
       description: string
       price: Prisma.Decimal
-      picture_url: string
+      picture_url: string | null
       state: $Enums.ProductState
       createdAt: Date
       categoryName: string | null
@@ -8659,7 +8659,7 @@ export namespace Prisma {
     name?: StringFilter<"Products"> | string
     description?: StringFilter<"Products"> | string
     price?: DecimalFilter<"Products"> | Decimal | DecimalJsLike | number | string
-    picture_url?: StringFilter<"Products"> | string
+    picture_url?: StringNullableFilter<"Products"> | string | null
     state?: EnumProductStateFilter<"Products"> | $Enums.ProductState
     createdAt?: DateTimeFilter<"Products"> | Date | string
     categoryName?: StringNullableFilter<"Products"> | string | null
@@ -8673,7 +8673,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     price?: SortOrder
-    picture_url?: SortOrder
+    picture_url?: SortOrderInput | SortOrder
     state?: SortOrder
     createdAt?: SortOrder
     categoryName?: SortOrderInput | SortOrder
@@ -8690,7 +8690,7 @@ export namespace Prisma {
     reference?: StringFilter<"Products"> | string
     description?: StringFilter<"Products"> | string
     price?: DecimalFilter<"Products"> | Decimal | DecimalJsLike | number | string
-    picture_url?: StringFilter<"Products"> | string
+    picture_url?: StringNullableFilter<"Products"> | string | null
     state?: EnumProductStateFilter<"Products"> | $Enums.ProductState
     createdAt?: DateTimeFilter<"Products"> | Date | string
     categoryName?: StringNullableFilter<"Products"> | string | null
@@ -8704,7 +8704,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     price?: SortOrder
-    picture_url?: SortOrder
+    picture_url?: SortOrderInput | SortOrder
     state?: SortOrder
     createdAt?: SortOrder
     categoryName?: SortOrderInput | SortOrder
@@ -8724,7 +8724,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Products"> | string
     description?: StringWithAggregatesFilter<"Products"> | string
     price?: DecimalWithAggregatesFilter<"Products"> | Decimal | DecimalJsLike | number | string
-    picture_url?: StringWithAggregatesFilter<"Products"> | string
+    picture_url?: StringNullableWithAggregatesFilter<"Products"> | string | null
     state?: EnumProductStateWithAggregatesFilter<"Products"> | $Enums.ProductState
     createdAt?: DateTimeWithAggregatesFilter<"Products"> | Date | string
     categoryName?: StringNullableWithAggregatesFilter<"Products"> | string | null
@@ -9075,7 +9075,7 @@ export namespace Prisma {
     name: string
     description: string
     price: Decimal | DecimalJsLike | number | string
-    picture_url: string
+    picture_url?: string | null
     state?: $Enums.ProductState
     createdAt?: Date | string
     category?: CategoryCreateNestedOneWithoutProductsInput
@@ -9088,7 +9088,7 @@ export namespace Prisma {
     name: string
     description: string
     price: Decimal | DecimalJsLike | number | string
-    picture_url: string
+    picture_url?: string | null
     state?: $Enums.ProductState
     createdAt?: Date | string
     categoryName?: string | null
@@ -9101,7 +9101,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    picture_url?: StringFieldUpdateOperationsInput | string
+    picture_url?: NullableStringFieldUpdateOperationsInput | string | null
     state?: EnumProductStateFieldUpdateOperationsInput | $Enums.ProductState
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: CategoryUpdateOneWithoutProductsNestedInput
@@ -9114,7 +9114,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    picture_url?: StringFieldUpdateOperationsInput | string
+    picture_url?: NullableStringFieldUpdateOperationsInput | string | null
     state?: EnumProductStateFieldUpdateOperationsInput | $Enums.ProductState
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     categoryName?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9127,7 +9127,7 @@ export namespace Prisma {
     name: string
     description: string
     price: Decimal | DecimalJsLike | number | string
-    picture_url: string
+    picture_url?: string | null
     state?: $Enums.ProductState
     createdAt?: Date | string
     categoryName?: string | null
@@ -9139,7 +9139,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    picture_url?: StringFieldUpdateOperationsInput | string
+    picture_url?: NullableStringFieldUpdateOperationsInput | string | null
     state?: EnumProductStateFieldUpdateOperationsInput | $Enums.ProductState
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -9150,7 +9150,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    picture_url?: StringFieldUpdateOperationsInput | string
+    picture_url?: NullableStringFieldUpdateOperationsInput | string | null
     state?: EnumProductStateFieldUpdateOperationsInput | $Enums.ProductState
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     categoryName?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9519,13 +9519,6 @@ export namespace Prisma {
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
-  export type EnumProductStateFilter<$PrismaModel = never> = {
-    equals?: $Enums.ProductState | EnumProductStateFieldRefInput<$PrismaModel>
-    in?: $Enums.ProductState[] | ListEnumProductStateFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ProductState[] | ListEnumProductStateFieldRefInput<$PrismaModel>
-    not?: NestedEnumProductStateFilter<$PrismaModel> | $Enums.ProductState
-  }
-
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -9539,6 +9532,13 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type EnumProductStateFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProductState | EnumProductStateFieldRefInput<$PrismaModel>
+    in?: $Enums.ProductState[] | ListEnumProductStateFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProductState[] | ListEnumProductStateFieldRefInput<$PrismaModel>
+    not?: NestedEnumProductStateFilter<$PrismaModel> | $Enums.ProductState
   }
 
   export type CategoryNullableScalarRelationFilter = {
@@ -9621,16 +9621,6 @@ export namespace Prisma {
     _max?: NestedDecimalFilter<$PrismaModel>
   }
 
-  export type EnumProductStateWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.ProductState | EnumProductStateFieldRefInput<$PrismaModel>
-    in?: $Enums.ProductState[] | ListEnumProductStateFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ProductState[] | ListEnumProductStateFieldRefInput<$PrismaModel>
-    not?: NestedEnumProductStateWithAggregatesFilter<$PrismaModel> | $Enums.ProductState
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumProductStateFilter<$PrismaModel>
-    _max?: NestedEnumProductStateFilter<$PrismaModel>
-  }
-
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -9647,6 +9637,16 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type EnumProductStateWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProductState | EnumProductStateFieldRefInput<$PrismaModel>
+    in?: $Enums.ProductState[] | ListEnumProductStateFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProductState[] | ListEnumProductStateFieldRefInput<$PrismaModel>
+    not?: NestedEnumProductStateWithAggregatesFilter<$PrismaModel> | $Enums.ProductState
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumProductStateFilter<$PrismaModel>
+    _max?: NestedEnumProductStateFilter<$PrismaModel>
   }
 
   export type EnumdeliveryModeNullableFilter<$PrismaModel = never> = {
@@ -9973,6 +9973,10 @@ export namespace Prisma {
     divide?: Decimal | DecimalJsLike | number | string
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type EnumProductStateFieldUpdateOperationsInput = {
     set?: $Enums.ProductState
   }
@@ -9999,10 +10003,6 @@ export namespace Prisma {
     update?: OrderItemsUpdateWithWhereUniqueWithoutProductsInput | OrderItemsUpdateWithWhereUniqueWithoutProductsInput[]
     updateMany?: OrderItemsUpdateManyWithWhereWithoutProductsInput | OrderItemsUpdateManyWithWhereWithoutProductsInput[]
     deleteMany?: OrderItemsScalarWhereInput | OrderItemsScalarWhereInput[]
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type OrderItemsUncheckedUpdateManyWithoutProductsNestedInput = {
@@ -10266,13 +10266,6 @@ export namespace Prisma {
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
-  export type NestedEnumProductStateFilter<$PrismaModel = never> = {
-    equals?: $Enums.ProductState | EnumProductStateFieldRefInput<$PrismaModel>
-    in?: $Enums.ProductState[] | ListEnumProductStateFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ProductState[] | ListEnumProductStateFieldRefInput<$PrismaModel>
-    not?: NestedEnumProductStateFilter<$PrismaModel> | $Enums.ProductState
-  }
-
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -10285,6 +10278,13 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedEnumProductStateFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProductState | EnumProductStateFieldRefInput<$PrismaModel>
+    in?: $Enums.ProductState[] | ListEnumProductStateFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProductState[] | ListEnumProductStateFieldRefInput<$PrismaModel>
+    not?: NestedEnumProductStateFilter<$PrismaModel> | $Enums.ProductState
   }
 
   export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
@@ -10301,16 +10301,6 @@ export namespace Prisma {
     _sum?: NestedDecimalFilter<$PrismaModel>
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
-  }
-
-  export type NestedEnumProductStateWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.ProductState | EnumProductStateFieldRefInput<$PrismaModel>
-    in?: $Enums.ProductState[] | ListEnumProductStateFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ProductState[] | ListEnumProductStateFieldRefInput<$PrismaModel>
-    not?: NestedEnumProductStateWithAggregatesFilter<$PrismaModel> | $Enums.ProductState
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumProductStateFilter<$PrismaModel>
-    _max?: NestedEnumProductStateFilter<$PrismaModel>
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -10339,6 +10329,16 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedEnumProductStateWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProductState | EnumProductStateFieldRefInput<$PrismaModel>
+    in?: $Enums.ProductState[] | ListEnumProductStateFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProductState[] | ListEnumProductStateFieldRefInput<$PrismaModel>
+    not?: NestedEnumProductStateWithAggregatesFilter<$PrismaModel> | $Enums.ProductState
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumProductStateFilter<$PrismaModel>
+    _max?: NestedEnumProductStateFilter<$PrismaModel>
   }
 
   export type NestedEnumdeliveryModeNullableFilter<$PrismaModel = never> = {
@@ -10498,7 +10498,7 @@ export namespace Prisma {
     name: string
     description: string
     price: Decimal | DecimalJsLike | number | string
-    picture_url: string
+    picture_url?: string | null
     state?: $Enums.ProductState
     createdAt?: Date | string
     OrderItems?: OrderItemsCreateNestedManyWithoutProductsInput
@@ -10510,7 +10510,7 @@ export namespace Prisma {
     name: string
     description: string
     price: Decimal | DecimalJsLike | number | string
-    picture_url: string
+    picture_url?: string | null
     state?: $Enums.ProductState
     createdAt?: Date | string
     OrderItems?: OrderItemsUncheckedCreateNestedManyWithoutProductsInput
@@ -10551,7 +10551,7 @@ export namespace Prisma {
     name?: StringFilter<"Products"> | string
     description?: StringFilter<"Products"> | string
     price?: DecimalFilter<"Products"> | Decimal | DecimalJsLike | number | string
-    picture_url?: StringFilter<"Products"> | string
+    picture_url?: StringNullableFilter<"Products"> | string | null
     state?: EnumProductStateFilter<"Products"> | $Enums.ProductState
     createdAt?: DateTimeFilter<"Products"> | Date | string
     categoryName?: StringNullableFilter<"Products"> | string | null
@@ -10833,7 +10833,7 @@ export namespace Prisma {
     name: string
     description: string
     price: Decimal | DecimalJsLike | number | string
-    picture_url: string
+    picture_url?: string | null
     state?: $Enums.ProductState
     createdAt?: Date | string
     category?: CategoryCreateNestedOneWithoutProductsInput
@@ -10845,7 +10845,7 @@ export namespace Prisma {
     name: string
     description: string
     price: Decimal | DecimalJsLike | number | string
-    picture_url: string
+    picture_url?: string | null
     state?: $Enums.ProductState
     createdAt?: Date | string
     categoryName?: string | null
@@ -10914,7 +10914,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    picture_url?: StringFieldUpdateOperationsInput | string
+    picture_url?: NullableStringFieldUpdateOperationsInput | string | null
     state?: EnumProductStateFieldUpdateOperationsInput | $Enums.ProductState
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: CategoryUpdateOneWithoutProductsNestedInput
@@ -10926,7 +10926,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    picture_url?: StringFieldUpdateOperationsInput | string
+    picture_url?: NullableStringFieldUpdateOperationsInput | string | null
     state?: EnumProductStateFieldUpdateOperationsInput | $Enums.ProductState
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     categoryName?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11070,7 +11070,7 @@ export namespace Prisma {
     name: string
     description: string
     price: Decimal | DecimalJsLike | number | string
-    picture_url: string
+    picture_url?: string | null
     state?: $Enums.ProductState
     createdAt?: Date | string
   }
@@ -11081,7 +11081,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    picture_url?: StringFieldUpdateOperationsInput | string
+    picture_url?: NullableStringFieldUpdateOperationsInput | string | null
     state?: EnumProductStateFieldUpdateOperationsInput | $Enums.ProductState
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     OrderItems?: OrderItemsUpdateManyWithoutProductsNestedInput
@@ -11093,7 +11093,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    picture_url?: StringFieldUpdateOperationsInput | string
+    picture_url?: NullableStringFieldUpdateOperationsInput | string | null
     state?: EnumProductStateFieldUpdateOperationsInput | $Enums.ProductState
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     OrderItems?: OrderItemsUncheckedUpdateManyWithoutProductsNestedInput
@@ -11105,7 +11105,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    picture_url?: StringFieldUpdateOperationsInput | string
+    picture_url?: NullableStringFieldUpdateOperationsInput | string | null
     state?: EnumProductStateFieldUpdateOperationsInput | $Enums.ProductState
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

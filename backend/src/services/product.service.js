@@ -2,6 +2,7 @@ const productRepository = require("../repositories/product.repository");
 const categoryRepository = require("../repositories/category.repository");
 const crypto = require("crypto");
 const cloudinary = require("../config/cloudinary");
+const fs = require("fs");
 
 class productService {
   async createProduct(productData, file) {
@@ -13,7 +14,7 @@ class productService {
     }
 
     if (productData.categoryName) {
-      const existingCategory = await categoryRepository.getCategoryByName(
+      const existingCategory = await categoryRepository.getAllCategoriesByname(
         productData.categoryName
       );
       if (!existingCategory) {
@@ -42,6 +43,13 @@ class productService {
       state: productData.state,
       categoryName: productData.categoryName,
     });
+
+    // Supprimer le fichier local après upload
+    if (file && file.path) {
+      fs.unlink(file.path, (err) => {
+        if (err) console.error("Erreur suppression fichier local:", err);
+      });
+    }
 
     return create;
   }
