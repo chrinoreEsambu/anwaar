@@ -1,5 +1,6 @@
 const productRepository = require("../repositories/product.repository");
 const categoryRepository = require("../repositories/category.repository");
+const crypto = require("crypto");
 const cloudinary = require("../config/cloudinary");
 
 class productService {
@@ -27,7 +28,8 @@ class productService {
       });
     }
     pictureUrl = uploaded.secure_url;
-const productReference = 
+    const date = new Date().getFullYear();
+    const uuid = crypto.randomUUID();
     const create = await productRepository.createProduct({
       reference: productData.reference,
       name: productData.name,
