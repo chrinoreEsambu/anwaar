@@ -55,35 +55,50 @@ class productService {
   }
   async getAllProduct() {
     const getProducts = await productRepository.getAllProduct();
-    if (!getProducts) {
-      throw new Error("Aucun produit existant dans votre base de donnée");
+    if (!getProducts || getProducts.length === 0) {
+      throw new Error("getProducts");
     }
     return getProducts;
   }
   async getProductByName(productName) {
-    const finder = await productRepository.findProductByName(productName.name);
+    if (!productName) {
+      throw new Error("Le nom du produit est requis");
+    }
+    const finder = await productRepository.findProductByName(productName);
     if (!finder) {
-      throw new Error("Aucun produit ne correspond a votre recherche !");
+      throw new Error("Aucun");
     }
     return finder;
   }
-  async updateProduct(pruductData) {
-    const { element } = req.query;
-    const finder = await productRepository.findProductByName(element.name);
-    if (!finder) {
-      throw new Error("Le produit voulant etre mis ajour n'existe plus !");
+  async updateProduct(data) {
+    const { namequery, name, description, price, state, categoryName } = data;
+    const existing = await productRepository.findProductByName(namequery);
+    if (!existing) {
+      throw new Error("n'existe plus !");
     }
-    const update = await productRepository.updateProduct(element);
-    return update;
+    if (categoryName) {
+      const category = await categoryRepository.getAllCategoriesByname(
+        categoryName
+      );
+      if (!category) {
+        throw new Error("La catégorie spécifiée n'existe pas");
+      }
+    }
+    const updateData = {};
+    if (name) updateData.name = name;
+    if (description) updateData.description = description;
+    if (price) updateData.price = price;
+    if (state) updateData.state = state;
+    if (categoryName) updateData.categoryName = categoryName;
+    return await productRepository.updateProduct(namequery, updateData);
   }
 
-  async deleteProduct(productData) {
-    const finder = await productRepository.findProductByName(productData.name);
-    if (!finder) {
-      throw new Error("Le produit voulant etre supprimer n'existe plus !");
+  async deleteProduct(productName) {
+    const existing = await productRepository.findProductByName(productName);
+    if (!existing) {
+      throw new Error("n'existe plus !");
     }
-    const deleteProd = await productRepository.deleteProduct(productData);
-    return deleteProd;
+    return await productRepository.deleteProduct(productName);
   }
 }
 

@@ -13,14 +13,14 @@ class productRepository {
   async getAllProduct() {
     return await prisma.products.findMany();
   }
-  async updateProduct(productData) {
+  async updateProduct(name, updateData) {
     return await prisma.products.update({
-      where: { name: productData.name },
-      data: productData,
+      where: { name },
+      data: updateData,
     });
   }
-  async deleteProduct(productData) {
-    return await prisma.products.delete({ where: { name: productData.name } });
+  async deleteProduct(name) {
+    return await prisma.products.delete({ where: { name } });
   }
 }
 

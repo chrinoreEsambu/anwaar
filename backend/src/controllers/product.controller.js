@@ -62,13 +62,13 @@ class productController {
   }
   async getProductByName(req, res) {
     const { productName } = req.query;
+    if (!productName) {
+      return res.status(400).json({
+        message: "Le nom du produit est requis pour faire cette recherche",
+      });
+    }
     try {
-      const find = await productService.getProductByName({ productName });
-      if (!find) {
-        res.status(404).json({
-          message: "le nom du produit est requis pour faire cette recherche",
-        });
-      }
+      const find = await productService.getProductByName(productName);
       res.status(200).json({ message: "product find :", find });
     } catch (error) {
       if (error.message.includes("Aucun")) {
@@ -85,49 +85,73 @@ class productController {
     }
   }
   async updateProduct(req, res) {
-    const { element } = req.query;
+    const { name: namequery } = req.query;
+    const { name, description, price, state, categoryName } = req.body;
+    if (!namequery) {
+      return res.status(400).json({
+        success: false,
+        message: "Le nom du produit est requis dans les paramètres",
+      });
+    }
     try {
-      const update = await productService.updateProduct({ element });
-      res.status(201).json({
+      const update = await productService.updateProduct({
+        namequery,
+        name,
+        description,
+        price,
+        state,
+        categoryName,
+      });
+      res.status(200).json({
         success: true,
-        messae: "produit mis a jour avec succès",
+        message: "Produit mis à jour avec succès",
         update,
       });
     } catch (error) {
-      if (error.message.includes("n'existe plus !")) {
+      if (error.message.includes("n'existe plus")) {
         res.status(404).json({
           success: false,
-          message: "Le produit voulant etre mis ajour n'existe plus !",
+          message: "Le produit n'existe pas",
+        });
+      }
+      if (error.message.includes("catégorie")) {
+        res.status(400).json({
+          success: false,
+          message: error.message,
         });
       }
       return res.status(500).json({
         success: false,
-        message: "Erreur lors de la mis a jour du produit",
+        message: "Erreur lors de la mise à jour du produit",
         error: error.message,
       });
     }
   }
   async deleteproduct(req, res) {
     const { productName } = req.query;
+    if (!productName) {
+      return res.status(400).json({
+        success: false,
+        message: "Le nom du produit est requis",
+      });
+    }
     try {
-      const deleteProd = await productService.deleteProduct({ productName });
-      res
-        .status(200)
-        .json({
-          success: true,
-          message: "Produit supprimer avec succès",
-          deleteProd,
-        });
+      const deleteProd = await productService.deleteProduct(productName);
+      res.status(200).json({
+        success: true,
+        message: "Produit supprimé avec succès",
+        deleteProd,
+      });
     } catch (error) {
-      if (error.message.includes("n'existe plus !")) {
+      if (error.message.includes("n'existe plus")) {
         res.status(404).json({
           success: false,
-          message: "Le produit voulant etre supprimer n'existe plus !",
+          message: "Le produit n'existe pas",
         });
       }
       return res.status(500).json({
         success: false,
-        message: "Erreur lors de la mis a jour du produit",
+        message: "Erreur lors de la suppression du produit",
         error: error.message,
       });
     }
