@@ -15,14 +15,14 @@
 | `updateCategory` ok   | Modifier une catégorie        | Backend            |
 | `deleteCategory` ok   | Supprimer une catégorie       | Backend            |
 
-| Fonction           | Description                          | Côté               |
-| ------------------ | ------------------------------------ | ------------------ |
-| `createProduct` ok | Ajouter un produit (admin)           | Backend + Frontend |
-| `getAllProducts`   | Liste paginée / filtrée des produits | Backend + Frontend |
-| `getProductById`   | Voir les détails d’un produit        | Backend + Frontend |
-| `updateProduct`    | Modifier un produit                  | Backend            |
-| `deleteProduct`    | Supprimer un produit                 | Backend            |
-| `hide` / `display` | Masquer / afficher un produit        | Backend            |
+| Fonction                | Description                          | Côté               |
+| ----------------------- | ------------------------------------ | ------------------ |
+| `createProduct` ok      | Ajouter un produit (admin)           | Backend + Frontend |
+| `getAllProducts`check   | Liste paginée / filtrée des produits | Backend + Frontend |
+| `getProductByName`check | Voir les détails d’un produit        | Backend + Frontend |
+| `updateProduct`check    | Modifier un produit                  | Backend            |
+| `deleteProduct`         | Supprimer un produit                 | Backend            |
+| `hide` / `display`      | Masquer / afficher un produit        | Backend            |
 
 | Fonction            | Description                                            | Côté               |
 | ------------------- | ------------------------------------------------------ | ------------------ |

@@ -53,6 +53,38 @@ class productService {
 
     return create;
   }
+  async getAllProduct() {
+    const getProducts = await productRepository.getAllProduct();
+    if (!getProducts) {
+      throw new Error("Aucun produit existant dans votre base de donnée");
+    }
+    return getProducts;
+  }
+  async getProductByName(productName) {
+    const finder = await productRepository.findProductByName(productName.name);
+    if (!finder) {
+      throw new Error("Aucun produit ne correspond a votre recherche !");
+    }
+    return finder;
+  }
+  async updateProduct(pruductData) {
+    const { element } = req.query;
+    const finder = await productRepository.findProductByName(element.name);
+    if (!finder) {
+      throw new Error("Le produit voulant etre mis ajour n'existe plus !");
+    }
+    const update = await productRepository.updateProduct(element);
+    return update;
+  }
+
+  async deleteProduct(productData) {
+    const finder = await productRepository.findProductByName(productData.name);
+    if (!finder) {
+      throw new Error("Le produit voulant etre supprimer n'existe plus !");
+    }
+    const deleteProd = await productRepository.deleteProduct(productData);
+    return deleteProd;
+  }
 }
 
 module.exports = new productService();
