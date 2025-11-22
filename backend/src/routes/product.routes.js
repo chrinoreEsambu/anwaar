@@ -19,7 +19,12 @@ router.get(
   productController.getAllProduts
 );
 
-router.get("/admin/getProductByName", productController.getProductByName);
+router.get(
+  "/admin/getProductByName",
+  verifyToken,
+  schekrole,
+  productController.getProductByName
+);
 
 router.put(
   "/admin/updateProduct",
